@@ -10,6 +10,13 @@ endif
 
 include $(TA_DEV_KIT_DIR)/host_include/conf.mk
 
+# Add for debug, include static client lib
+DEBUG       ?= 0
+ifeq ($(DEBUG), 1)
+CFLAGS += -g -O0
+LDFLAGS += -static
+endif
+
 # By default we expect optee_client exported folder to be on a certain relative
 # path, but if the client specifies the OPTEE_CLIENT_EXPORT then that path will
 # be used instead.
